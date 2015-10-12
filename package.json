@@ -5,13 +5,14 @@
   "private": true,
   "author": "Michael Wolfendale",
   "engines": {
-    "node" : "4.1.2"
+    "node": "4.1.2"
   },
   "scripts": {
     "postinstall": "gulp build",
     "start": "node start"
   },
   "dependencies": {
+    "basic-auth": "^1.0.3",
     "body-parser": "^1.14.1",
     "consolidate": "^0.13.1",
     "express": "^4.13.3",
@@ -20,18 +21,18 @@
     "govuk_frontend_toolkit": "^4.3.0",
     "govuk_template_mustache": "^0.16.0",
     "gulp": "^3.9.0",
+    "gulp-flatten": "^0.2.0",
     "gulp-hogan": "^1.2.0",
+    "gulp-live-server": "0.0.28",
     "gulp-rename": "^1.2.2",
+    "gulp-rimraf": "^0.2.0",
     "gulp-sass": "^2.0.4",
     "gulp-util": "^3.0.6",
-    "gulp-flatten": "^0.2.0",
-    "gulp-live-server": "0.0.28",
-    "gulp-rimraf": "^0.2.0",
-    "rimraf": "^2.4.3",
-    "merge-stream": "^1.0.0",
     "hjs": "0.0.6",
     "hogan.js": "^3.0.2",
+    "merge-stream": "^1.0.0",
     "q": "^1.4.1",
+    "rimraf": "^2.4.3",
     "serve-favicon": "^2.3.0",
     "touch": "^1.0.0"
   }

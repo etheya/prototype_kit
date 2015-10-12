@@ -5,13 +5,33 @@ var express = require('express'),
   path = require('path'),
   glob = require('glob-all'),
   hjs = require('hjs'),
+  auth = require('basic-auth'),
+
+  // for auth middleware
+  username = process.env.USERNAME,
+  password = process.env.PASSQORD,
+  env = process.env.NODE_ENV || 'development',
 
   app = express();
 
-app.use(favicon(
-  path.join(__dirname, 'global', 'public', 'images', 'favicon.ico')));
+app.use(favicon( path.join(__dirname, 'global', 'public', 'images', 'favicon.ico')));
 
 app.use(bodyParser.urlencoded({ extended : true }));
+
+app.use(function (username, password, req, res, next) {
+  var creds = auth(req);
+
+  if (env === 'production') {
+    if (!creds || !creds.name !== username || !creds.pass !== password) {
+      res.statusCode = 401;
+      res.setHeader('WWW-Authenticate', 'Basic realm=Authorization Required');
+      res.end('Access denied');
+    }
+    else {
+      next();
+    }
+  }
+});
 
 function crunchTemplates(viewdirs) {
   return glob.sync(viewdirs.map(function (e) {
